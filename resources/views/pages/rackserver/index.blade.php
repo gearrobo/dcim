@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="{{ asset('assets/dist/img/server.png') }}" alt="center" alt="" width="250" height="160">
+                                    <img src="{{ asset('assets/dist/img/rack-icon.png') }}" alt="center" alt="" width="200" height="160">
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
