@@ -33,12 +33,28 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
+                                            <span style="font-size:18px;font-weight:400"><a href="/security/book" class="text-blue">Buku Tamu</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <i class="fas fa-address-book fa-10x"></i>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-sm-3">
+                            <div id="card" class="card card-info m-0 border-primary" style="border: 1px solid;border-radius: 3px;">
+                                <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
+                                    <div class="row">
+                                        <div class="col-sm-12 ">
                                             <span style="font-size:18px;font-weight:400"><a href="/hvac/detail" class="text-blue">CCTV</a></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body text-center">
-                                    <img src="{{ asset('assets/dist/img/cctv.png') }}" alt="center" width="200" height="200">
+                                    <img src="{{ asset('assets/dist/img/cctv.png') }}" alt="center" width="160" height="160">
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

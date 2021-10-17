@@ -45,6 +45,7 @@ Route::get('/hvac','HvacController@index');
 Route::get('/hvac/detail/{id}','HvacController@detail');
 
 Route::get('/security','SecurityController@index');
+Route::get('/security/book','SecurityController@book');
 
 
 Route::as('setting.')->prefix('setting')->group(function(){

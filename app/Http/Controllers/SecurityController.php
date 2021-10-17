@@ -16,6 +16,11 @@ class SecurityController extends Controller
         return view('pages.security.index');
     }
 
+    public function book()
+    {
+        return view('pages.security.book');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
