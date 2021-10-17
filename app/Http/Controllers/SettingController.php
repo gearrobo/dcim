@@ -176,7 +176,7 @@ class SettingController extends Controller
                 'min_hijau' => 20,
                 'max_hijau' => 25,
                 'treshold_max_sensor' => 28,
-                'min_merah' => 38,
+                'min_merah' => 28,
                 'max_merah' => 35,
                 'avg_sensor' => 23
             ]);
