@@ -70,9 +70,9 @@
                                     </div>
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 m-0">
-                                            <span style="font-size:35px;background-color:#6495ED">{{ $rack->temp_on }} </span>|
-                                            <span style="font-size:35px;background-color:yellow">{{ $rack->temp_middle }} </span>|
-                                            <span style="font-size:35px;background-color:green">{{ $rack->temp_under }}</span>
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->temp_on,2) }} </span>|
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->temp_middle,2) }} </span>|
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->temp_under,2) }}</span>
                                             <span style="font-size:35px">&nbsp; &degC</span>
                                         </div>
                                         <div class="clearfix"></div>
@@ -91,9 +91,9 @@
                                     </div>
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 m-0">
-                                            <span style="font-size:35px;background-color:#6495ED">{{ $rack->hum_on }} </span>|
-                                            <span style="font-size:35px;background-color:red">{{ $rack->hum_on }} </span>|
-                                            <span style="font-size:35px;background-color:yellow">{{ $rack->hum_on }}</span>
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->hum_on,2) }} </span>|
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->hum_middle,2) }} </span>|
+                                            <span style="font-size:35px;background-color:white">{{ number_format($rack->hum_under,2) }}</span>
                                             <span style="font-size:35px">&nbsp; %</span>
                                         </div>
                                         <div class="clearfix"></div>
