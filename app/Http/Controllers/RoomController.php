@@ -38,28 +38,28 @@ class RoomController extends Controller
         $dustid = 4;
 
         if ($link == 'Temperature') {
-            $sensors = Sensor::where('sensor_type_id', $tempid)->get();
+            $sensors = Sensor::where('sensor_type_id', $tempid)->where('device_id',null)->get();
             $data = [
                 'title' => 'Suhu',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Humidity') {
-            $sensors = Sensor::where('sensor_type_id', $humid)->get();
+            $sensors = Sensor::where('sensor_type_id', $humid)->where('device_id',null)->get();
             $data = [
                 'title' => 'Kelembaban',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Smoke') {
-            $sensors = Sensor::where('sensor_type_id', $smokeid)->get();
+            $sensors = Sensor::where('sensor_type_id', $smokeid)->where('device_id',null)->get();
             $data = [
                 'title' => 'Asap',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Dust') {
-            $sensors = Sensor::where('sensor_type_id', $dustid)->get();
+            $sensors = Sensor::where('sensor_type_id', $dustid)->where('device_id',null)->get();
             $data = [
                 'title' => 'Debu',
                 'sensors' => $sensors
