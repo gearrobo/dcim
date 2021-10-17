@@ -28,7 +28,7 @@
                 <div class="raw">
                     <div class="card">
                         <div class="card-header bg-info">
-                            <h4 class="text-white"><i class="fas fa-snowflake"></i>&nbsp; AirSys Optima</h4>
+                            <h4 class="text-white"><i class="fas fa-snowflake"></i>&nbsp; {{ $sensors->first()->device->name }}</h4>
                         </div></br>
                         <div class="row">
                             <div class="col-sm-6">

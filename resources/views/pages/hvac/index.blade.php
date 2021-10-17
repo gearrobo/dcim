@@ -41,6 +41,7 @@
                                 <div class="card-body text-center">
                                     @if (count($device->sensor))
                                     <span style="font-size:50px;font-weight: bold;">{{ number_format($device->sensor->where('sensor_type_id',1)->first()->avg_sensor,2) }} &deg; C</span>
+                                    <span style="font-size:50px;font-weight: bold;">{{ number_format($device->sensor->where('sensor_type_id',2)->first()->avg_sensor,2) }} &nbsp; %</span>
                                     @endif
                                     <div class="clearfix"></div>
                                 </div>
