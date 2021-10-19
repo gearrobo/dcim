@@ -40,7 +40,7 @@
                                 <div class="raw text-right mr-3">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div><b>Leakage current :</b><span style="color: red;"> {{ $rack->current }} A</span></div>
+                                            <div><b>Arus Terpakai :</b><span style="color: red;"> {{ $rack->current }} A</span></div>
                                             <div><b>Active Power :</b><span style="color: red;"> {{ $rack->power }} kW</span></div>
                                             <div><b>Voltage :</b><span style="color: red;"> {{ $rack->voltage }} V</span></div>
                                         </div>
