@@ -110,6 +110,7 @@
         <script src="{{ asset('assets/plugins/highcharts/modules/exporting.js') }}"></script>
         <script src="https://code.highcharts.com/modules/series-label.js"></script>
         <script src="{{ asset('assets/dist/js/gauge.min.js') }}"></script>
+        <script src="{{ asset('assets/dist/js/webcam.min.js') }}"></script>
         <!--  -->
         <!--  -->
 

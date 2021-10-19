@@ -32,22 +32,24 @@
                         <div class="col-sm-6">
                             <div class="raw">
                                 <div class="m-2">
-                                    <div class="form-group">
-                                        <label for="">Nama :</label>
-                                        <input type="text" id="name" name="name" class="form-control" value="Isi Nama Anda">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address">Alamat :</label>
-                                        <textarea class="form-control" rows="3" name="address" id="address"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="video-webcam">Gambar :</label>
-                                    </div>
-                                    <div class="m-0">
-                                        <video autoplay="true" id="video-webcam" name="video-webcam" class="form-controll" alt="top" width="550" >
-                                            Browsermu tidak mendukung bro, upgrade donk!
-                                        </video>
-                                    </div>
+                                    <form action="{{ route('security.book.store') }}" method="POST">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="">Nama :</label>
+                                            <input type="text" id="name" name="name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Alamat :</label>
+                                            <textarea class="form-control" rows="3" name="address" id="address"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="video-webcam">Gambar :</label>
+                                        </div>
+                                        <div class="m-0">
+                                            <div id="my_camera"></div>
+                                            <br />
+                                            <input type="hidden" name="image" class="image-tag">
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -79,11 +81,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="need">Kebutuhan :</label>
-                                        <textarea  class="form-control" rows="3" id="need" name="need"></textarea>
+                                        <textarea class="form-control" rows="3" id="need" name="need"></textarea>
                                     </div>
+                                    <button type="submit" class="btn btn-primary" value="Take Snapshot" onClick="take_snapshot()">Tambah</button>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -94,30 +98,21 @@
 @endsection
 
 @section('data')
-<script type="text/javascript">
-    // seleksi elemen video
-    var video = document.querySelector("#video-webcam");
+<script language="JavaScript">
+    Webcam.set({
+        width: 490,
+        height: 390,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
 
-    // minta izin user
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+    Webcam.attach('#my_camera');
 
-    // jika user memberikan izin
-    if (navigator.getUserMedia) {
-        // jalankan fungsi handleVideo, dan videoError jika izin ditolak
-        navigator.getUserMedia({
-            video: true
-        }, handleVideo, videoError);
-    }
-
-    // fungsi ini akan dieksekusi jika  izin telah diberikan
-    function handleVideo(stream) {
-        video.srcObject = stream;
-    }
-
-    // fungsi ini akan dieksekusi kalau user menolak izin
-    function videoError(e) {
-        // do something
-        alert("Izinkan menggunakan webcam untuk demo!")
+    function take_snapshot() {
+        Webcam.snap(function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+        });
     }
 </script>
 @endsection

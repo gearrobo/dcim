@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SecurityController extends Controller
 {
@@ -19,6 +21,14 @@ class SecurityController extends Controller
     public function book()
     {
         return view('pages.security.book');
+    }
+
+    public function list()
+    {
+        $data = [
+            'guests' => Guest::all()
+        ];
+        return view('pages.security.list')->with($data);
     }
 
     /**
@@ -39,7 +49,22 @@ class SecurityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $image = $request->image;  // your base64 encoded
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = $request->name . '.png';
+        // dd($imageName);
+        Storage::disk('public')->put('assets/dist/img/'.$imageName, base64_decode($image));
+        // Guest::create([
+        //     'name' => $request->name,
+        //     'address' => $request->address,
+        //     'handphone' => $request->phone,
+        //     'gender' => $request->gender,
+        //     'destination' => $request->destination,
+        //     'reason' => $request->need
+        // ]);
+        return redirect()->route('security.list');
     }
 
     /**

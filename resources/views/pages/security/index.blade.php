@@ -33,7 +33,7 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
-                                            <span style="font-size:18px;font-weight:400"><a href="/security/book" class="text-blue">Buku Tamu</a></span>
+                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('security.book') }}" class="text-blue">Buku Tamu</a></span>
                                         </div>
                                     </div>
                                 </div>
