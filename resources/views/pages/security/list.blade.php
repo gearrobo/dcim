@@ -72,6 +72,7 @@
                                                             <th>Bertemu :</th>
                                                             <th>Waktu :</th>
                                                             <th>Kebutuhan :</th>
+                                                            <th>Gambar</th>
                                                             <th>&nbsp;</th>
                                                         </tr>
                                                     </thead>
@@ -86,6 +87,7 @@
                                                             <td>{{ $guest->destination }}</td>
                                                             <td>{{ $guest->created_at }}</td>
                                                             <td>{{ $guest->reason }}</td>
+                                                            <td><img src="{{ storage($guest->name.'.png') }}" alt=""></td>
                                                             <td align="center" class="m-auto">
                                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#edit" 
                                                                 data-myname="{{$guest->name}}" data-myphone="{{$guest->hanphone}}"

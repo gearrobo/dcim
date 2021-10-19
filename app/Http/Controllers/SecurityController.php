@@ -49,13 +49,11 @@ class SecurityController extends Controller
      */
     public function store(Request $request)
     {
-
-        $image = $request->image;  // your base64 encoded
-        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = $request->image;
+        $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = $request->name . '.png';
-        // dd($imageName);
-        Storage::disk('public')->put('assets/dist/img/'.$imageName, base64_decode($image));
+        Storage::disk('public')->put($imageName, base64_decode($image));
         // Guest::create([
         //     'name' => $request->name,
         //     'address' => $request->address,
