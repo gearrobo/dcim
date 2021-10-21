@@ -71,6 +71,7 @@
                                                             <th>Jenis Kelamin</th>
                                                             <th>Bertemu :</th>
                                                             <th>Waktu :</th>
+                                                            <th>Status</th>
                                                             <th>Kebutuhan :</th>
                                                             <th>Gambar</th>
                                                         </tr>
@@ -85,6 +86,7 @@
                                                             <td>{{ $guest->gender }}</td>
                                                             <td>{{ $guest->destination }}</td>
                                                             <td>{{ $guest->time }}</td>
+                                                            <td>{{ $guest->status }}</td>
                                                             <td>{{ $guest->reason }}</td>
                                                             <?php $image = $guest->name.''.$guest->time.'.png'; ?>
                                                             <td><img src="{{ url('storage/'.$image ) }}" alt="" width="180" height="140"></td>

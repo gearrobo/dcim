@@ -14,6 +14,7 @@ class Guest extends Model
         'destination',
         'reason',
         'picture',
-        'time'
+        'time',
+        'status'
     ];
 }

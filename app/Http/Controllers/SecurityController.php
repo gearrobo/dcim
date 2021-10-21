@@ -51,6 +51,7 @@ class SecurityController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $wktu = $request->time.'|'.$request->date;
         $image = $request->image;
         $image = str_replace('data:image/jpeg;base64,', '', $image);
@@ -64,7 +65,8 @@ class SecurityController extends Controller
             'gender' => $request->gender,
             'destination' => $request->destination,
             'reason' => $request->need,
-            'time' => $wktu
+            'time' => $wktu,
+            'status' => $request->status,
         ]);
         return redirect()->route('security.list');
     }

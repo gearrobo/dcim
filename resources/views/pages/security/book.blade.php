@@ -80,6 +80,13 @@
                                         <input type="time" class="form-control" id="time" name="time">
                                     </div>
                                     <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="masuk">Masuk</option>
+                                            <option value="keluar">Keluar</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="need">Kebutuhan :</label>
                                         <textarea class="form-control" rows="3" id="need" name="need"></textarea>
                                     </div>
