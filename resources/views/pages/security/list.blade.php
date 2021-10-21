@@ -87,7 +87,8 @@
                                                             <td>{{ $guest->destination }}</td>
                                                             <td>{{ $guest->created_at }}</td>
                                                             <td>{{ $guest->reason }}</td>
-                                                            <td><img src="{{ storage($guest->name.'.png') }}" alt=""></td>
+                                                            <?php $image = $guest->name.''.$guest->time.'.png'; ?>
+                                                            <td><img src="{{ url('storage/'.$image ) }}" alt="" width="180" height="140"></td>
                                                             <td align="center" class="m-auto">
                                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#edit" 
                                                                 data-myname="{{$guest->name}}" data-myphone="{{$guest->hanphone}}"

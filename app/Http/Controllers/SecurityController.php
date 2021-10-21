@@ -25,7 +25,9 @@ class SecurityController extends Controller
 
     public function list()
     {
+        // dd(Storage::disk('public')->get('Gatot Nugroho22:58.png'));
         $data = [
+            'storage' => Storage::disk('public'),
             'guests' => Guest::all()
         ];
         return view('pages.security.list')->with($data);
@@ -52,7 +54,7 @@ class SecurityController extends Controller
         $image = $request->image;
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
-        $imageName = $request->name . '.png';
+        $imageName = $request->name . '' . $request->time . '.png';
         Storage::disk('public')->put($imageName, base64_decode($image));
         // Guest::create([
         //     'name' => $request->name,
