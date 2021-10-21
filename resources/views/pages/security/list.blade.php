@@ -73,7 +73,6 @@
                                                             <th>Waktu :</th>
                                                             <th>Kebutuhan :</th>
                                                             <th>Gambar</th>
-                                                            <th>&nbsp;</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -85,19 +84,10 @@
                                                             <td>{{ $guest->handphone }}</td>
                                                             <td>{{ $guest->gender }}</td>
                                                             <td>{{ $guest->destination }}</td>
-                                                            <td>{{ $guest->created_at }}</td>
+                                                            <td>{{ $guest->time }}</td>
                                                             <td>{{ $guest->reason }}</td>
                                                             <?php $image = $guest->name.''.$guest->time.'.png'; ?>
                                                             <td><img src="{{ url('storage/'.$image ) }}" alt="" width="180" height="140"></td>
-                                                            <td align="center" class="m-auto">
-                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#edit" 
-                                                                data-myname="{{$guest->name}}" data-myphone="{{$guest->hanphone}}"
-                                                                data-mygender="{{$guest->gender}}" data-mydestination="{{$guest->destination"
-                                                                
-                                                                data-myaddress="{{$guest->address"><i class="fas fa-edit"></i> Ubah</button>
-                                                                <a href="" class="btn btn-danger">Hapus</a>
-                                                                <a href="" class="btn btn-success">Detail</a>
-                                                            </td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

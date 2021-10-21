@@ -51,7 +51,7 @@ class SecurityController extends Controller
      */
     public function store(Request $request)
     {
-        $wktu = $request->time.''.$request->date;
+        $wktu = $request->time.'|'.$request->date;
         $image = $request->image;
         $image = str_replace('data:image/jpeg;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
