@@ -21,6 +21,7 @@ class CreateGuestsTable extends Migration
             $table->string('gender');
             $table->string('destination');
             $table->text('reason');
+            $table->string('time');
             $table->string('picture')->nullable();
             $table->timestamps();
         });

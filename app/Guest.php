@@ -13,6 +13,7 @@ class Guest extends Model
         'gender',
         'destination',
         'reason',
-        'picture'
+        'picture',
+        'time'
     ];
 }
