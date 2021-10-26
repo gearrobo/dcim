@@ -87,7 +87,7 @@
           <a href="{{ route('lamp.index') }}" class="nav-link">
             <i class="nav-icon far fa-lightbulb"></i>
             <p>
-              Lamp
+              Kontrol Lampu
             </p>
           </a>
         </li>
