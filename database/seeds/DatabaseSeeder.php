@@ -28,8 +28,9 @@ class DatabaseSeeder extends Seeder
             9 => 'Frequency (hz)',
             10 => 'Energy (Kwh)',
             11 => 'Lvmdp (%)',
+            12 => 'Relay (unit)'
         ];
-        for ($i = 1; $i < count($data) + 1; $i++) {
+        for ($i = 1; $i < 13; $i++) { //count($data) + 1
             DB::table('sensor_types')->insert([
                 'name' => $data[$i],
                 'type' => 'sensor',
@@ -38,13 +39,13 @@ class DatabaseSeeder extends Seeder
         }
 
         $data = [
-            12 => 'Panel',
-            13 => 'Pac',
-            14 => 'Ups',
-            15 => 'Pdu',
-            16 => 'Rack'
+            20 => 'Panel',
+            21 => 'Pac',
+            22 => 'Ups',
+            23 => 'Pdu',
+            24 => 'Rack'
         ];
-        for ($i = 12; $i < 17; $i++) {
+        for ($i = 20; $i < 25; $i++) {
             DB::table('sensor_types')->insert([
                 'name' => $data[$i],
                 'type' => 'alat',

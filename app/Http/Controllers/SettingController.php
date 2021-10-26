@@ -66,52 +66,6 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storesensortypes(Request $request)
-    {
-        if (ucfirst(strtolower($request->name)) == 'Temperature') {
-            $type_id = 1;
-        } elseif (ucfirst(strtolower($request->name)) == 'Humidity') {
-            $type_id = 2;
-        } elseif (ucfirst(strtolower($request->name)) == 'Smoke') {
-            $type_id = 3;
-        } elseif (ucfirst(strtolower($request->name)) == 'Dust') {
-            $type_id = 4;
-        } elseif (ucfirst(strtolower($request->name)) == 'Door') {
-            $type_id = 5;
-        } elseif (ucfirst(strtolower($request->name)) == 'Voltage') {
-            $type_id = 6;
-        } elseif (ucfirst(strtolower($request->name)) == 'Current') {
-            $type_id = 7;
-        } elseif (ucfirst(strtolower($request->name)) == 'Power') {
-            $type_id = 8;
-        } elseif (ucfirst(strtolower($request->name)) == 'Frequency') {
-            $type_id = 9;
-        } elseif (ucfirst(strtolower($request->name)) == 'Kwh') {
-            $type_id = 10;
-        } elseif (ucfirst(strtolower($request->name)) == 'Lvmdp') {
-            $type_id = 11;
-        }
-
-        if (ucfirst(strtolower($request->name)) == 'Panel') {
-            $type_id = 12;
-        } elseif (ucfirst(strtolower($request->name)) == 'Pac') {
-            $type_id = 13;
-        } elseif (ucfirst(strtolower($request->name)) == 'Ups') {
-            $type_id = 14;
-        } elseif (ucfirst(strtolower($request->name)) == 'Pdu') {
-            $type_id = 15;
-        } elseif (ucfirst(strtolower($request->name)) == 'Rack') {
-            $type_id = 16;
-        }
-
-        SensorType::create([
-            'name' => ucfirst(strtolower($request->name)),
-            'type_id' => $type_id,
-            'type' => $request->type,
-            'description' => $request->description
-        ]);
-        return back()->with('success', 'Sensor Type ' . $request->name . ' Berhasil di Tambah!');
-    }
     public function storedevices(Request $request)
     {
         Device::create([
@@ -121,7 +75,7 @@ class SettingController extends Controller
         ]);
         $devid = Device::where('name', $request->name)->first();
         //  dd($devid->id,$request->type_id);
-        if ($request->type_id == 12) {
+        if ($request->type_id == 20) {
             Sensor::create([
                 'name' => 'Voltage',
                 'device_id' => $devid->id,
@@ -165,7 +119,7 @@ class SettingController extends Controller
                 'avg_sensor' => 35
             ]);
         }
-        if ($request->type_id == 13) {
+        if ($request->type_id == 21) {
             Sensor::create([
                 'name' => 'Temperature',
                 'device_id' => $devid->id,
@@ -195,12 +149,12 @@ class SettingController extends Controller
                 'avg_sensor' => 55
             ]);
         }
-        if ($request->type_id == 14) {
+        if ($request->type_id == 22) {
             Ups::create([
                 'device_id' => $devid->id
             ]);
         }
-        if ($request->type_id == 16) {
+        if ($request->type_id == 24) {
             Rack::create([
                 'device_id' => $devid->id
             ]);
@@ -346,21 +300,21 @@ class SettingController extends Controller
      */
     public function destroydevices($id, $type_id)
     {
-        if ($type_id == 16) {
+        if ($type_id == 24) {
             $rack = Rack::where('device_id', $id)->first();
             Rack::destroy($rack->id);
         }
-        if ($type_id == 14) {
+        if ($type_id == 22) {
             $ups = Ups::where('device_id', $id)->first();
             Ups::destroy($ups->id);
         }
-        if ($type_id == 13) {
+        if ($type_id == 21) {
             $sensors = Sensor::where('device_id', $id)->get();
             foreach ($sensors as $sensor) {
                 Sensor::destroy($sensor->id);
             }
         }
-        if ($type_id == 12) {
+        if ($type_id == 20) {
             $sensors = Sensor::where('device_id', $id)->get();
             foreach ($sensors as $sensor) {
                 Sensor::destroy($sensor->id);

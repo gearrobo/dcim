@@ -35,10 +35,14 @@ Route::as('generator.')->prefix('generator')->group(function () {
     Route::as('page.store')->post('/page/store', 'GeneratorController@store');
 });
 
+Route::as('lamp.')->prefix('lamp')->group(function(){
+    Route::as('index')->get('/index','LampController@index');
+    Route::as('update')->post('/update/{id}','LampController@update');
+});
 
 Route::as('ups.')->prefix('ups')->group(function () {
     Route::as('page')->get('/page', 'UpsController@index');
-    Route::as('page.detail')->get('/page/detail/{id}', 'UpsController@detail');
+    Route::as('page.detail')->post('/page/detail/{id}', 'UpsController@detail');
 });
 
 Route::get('/hvac', 'HvacController@index');

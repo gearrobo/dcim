@@ -84,6 +84,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="{{ route('lamp.index') }}" class="nav-link">
+            <i class="nav-icon far fa-lightbulb"></i>
+            <p>
+              Lamp
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="{{ route('security.page') }}" class="nav-link">
             <i class="nav-icon fas fa-shield-alt"></i>
             <p>
