@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Device;
+use App\Ipaddress;
 use App\Rack;
 use App\SensorType;
 use App\Sensor;
@@ -18,7 +19,10 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('pages.setting.index');
+        $data = [
+            'ips' => Ipaddress::all()
+        ];
+        return view('pages.setting.index', $data);
     }
 
     public function sensortypes()
@@ -252,7 +256,13 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Ipaddress::where('id',$id)->update([
+            'ipv4' => $request->ipv4,
+            'netmask' => $request->netmask,
+            'gateway' => $request->gateway,
+            'dns' => $request->dns
+        ]);
+        return back();
     }
 
     public function updatesensortypes(Request $request)

@@ -11,7 +11,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard v1</li>
+          <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -22,44 +22,35 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
-    <div>
-      <video autoplay="true" id="video-webcam">
-        Browsermu tidak mendukung bro, upgrade donk!
-      </video>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header bg-info">
+            <span>Temperature</span>
+          </div>
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-4 m-3">
+                <div class="raw">
+                <i class="fas fa-thermometer-three-quarters fa-10x"></i>
+                </div>
+              </div>
+              <div class="col ml-2">
+                <div class="raw">
+                  <div class="col">
+                    <span style="font-size: 50px;">34.56&deg; C</span>
+                  </div>
+                  <div class="col">
+                    Suhu Tertinggi pada semua perangkat
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-@endsection
-
-@section('data')
-<script type="text/javascript">
-  // seleksi elemen video
-  var video = document.querySelector("#video-webcam");
-
-  // minta izin user
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-  // jika user memberikan izin
-  if (navigator.getUserMedia) {
-    // jalankan fungsi handleVideo, dan videoError jika izin ditolak
-    navigator.getUserMedia({
-      video: true
-    }, handleVideo, videoError);
-  }
-
-  // fungsi ini akan dieksekusi jika  izin telah diberikan
-  function handleVideo(stream) {
-    video.srcObject = stream;
-  }
-
-  // fungsi ini akan dieksekusi kalau user menolak izin
-  function videoError(e) {
-    // do something
-    alert("Izinkan menggunakan webcam untuk demo!")
-  }
-</script>
 @endsection

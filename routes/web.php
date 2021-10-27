@@ -59,6 +59,8 @@ Route::as('security.')->prefix('security')->group(function () {
 Route::as('setting.')->prefix('setting')->group(function () {
     Route::as('page')->get('/page', 'SettingController@index');
 
+    Route::as('ipupdate')->post('/ipupdate/{id}','SettingController@update');
+
     Route::as('page.sensor')->get('/page/sensor', 'SettingController@sensor');
     Route::as('page.sensor.store')->post('/page/sensor/store', 'SettingController@storesensor');
     Route::as('page.sensor.update')->patch('/setting/sensor/update', 'SettingController@updatesensor');
