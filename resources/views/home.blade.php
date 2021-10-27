@@ -32,19 +32,28 @@
             <div class="row">
               <div class="col-sm-4 m-3">
                 <div class="raw">
-                <i class="fas fa-thermometer-three-quarters fa-10x"></i>
+                  <i class="fas fa-thermometer-three-quarters fa-10x"></i>
                 </div>
               </div>
               <div class="col ml-2">
                 <div class="raw">
                   <div class="col">
-                    <span style="font-size: 50px;">34.56&deg; C</span>
+                    <span style="font-size: 50px;">{{number_format($temp,2)}}&deg; C</span>
                   </div>
                   <div class="col">
                     Suhu Tertinggi pada semua perangkat
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="raw">
+          <div class="car">
+            <div class="card-header bg-info">
+              <span>Power IT Equipment</span>
             </div>
           </div>
         </div>

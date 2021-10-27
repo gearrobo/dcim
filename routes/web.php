@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'DashboardController@index');
 
 Route::as('page.')->prefix('page')->group(function () {
     Route::as('room')->get('/room', 'RoomController@index');
