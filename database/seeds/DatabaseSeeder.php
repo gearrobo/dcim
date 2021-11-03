@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(SensorTypeTableSeeder::class);
         $this->call(GensetTableSeeder::class);
         $this->call(IpaddressTableSeeder::class);
-        $this->call(SensorTypeTableSeeder::class);
     }
 }

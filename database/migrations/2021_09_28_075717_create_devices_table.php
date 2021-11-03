@@ -14,10 +14,10 @@ class CreateDevicesTable extends Migration
     public function up()
     {
         Schema::create('devices', function (Blueprint $table) {
-            $table->BigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('sensor_types');
+            $table->foreign('type_id')->references('type_id')->on('sensor_types');
             $table->text('description')->nullable();
             $table->timestamps();
         });

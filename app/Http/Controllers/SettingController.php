@@ -78,7 +78,7 @@ class SettingController extends Controller
             'description' => $request->description
         ]);
         $devid = Device::where('name', $request->name)->first();
-        //  dd($devid->id,$request->type_id);
+        // dd($devid->id, $request->type_id);
         if ($request->type_id == 20) {
             Sensor::create([
                 'name' => 'Voltage',
@@ -123,46 +123,46 @@ class SettingController extends Controller
                 'avg_sensor' => 35
             ]);
         }
-        if ($request->type_id == 21) {
-            Sensor::create([
-                'name' => 'Temperature',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 1,
-                'min_sensor' => 0,
-                'max_sensor' => 17,
-                'treshold_min_sensor' => 17,
-                'min_hijau' => 20,
-                'max_hijau' => 25,
-                'treshold_max_sensor' => 28,
-                'min_merah' => 28,
-                'max_merah' => 35,
-                'avg_sensor' => 23
-            ]);
-            Sensor::create([
-                'name' => 'Humidity',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 2,
-                'min_sensor' => 0,
-                'max_sensor' => 40,
-                'treshold_min_sensor' => 40,
-                'min_hijau' => 45,
-                'max_hijau' => 60,
-                'treshold_max_sensor' => 65,
-                'min_merah' => 65,
-                'max_merah' => 100,
-                'avg_sensor' => 55
-            ]);
-        }
+        // if ($request->type_id == 21) {
+        //     Sensor::create([
+        //         'name' => 'Temperature',
+        //         'device_id' => $devid->id,
+        //         'sensor_type_id' => 1,
+        //         'min_sensor' => 0,
+        //         'max_sensor' => 17,
+        //         'treshold_min_sensor' => 17,
+        //         'min_hijau' => 20,
+        //         'max_hijau' => 25,
+        //         'treshold_max_sensor' => 28,
+        //         'min_merah' => 28,
+        //         'max_merah' => 35,
+        //         'avg_sensor' => 23
+        //     ]);
+        //     Sensor::create([
+        //         'name' => 'Humidity',
+        //         'device_id' => $devid->id,
+        //         'sensor_type_id' => 2,
+        //         'min_sensor' => 0,
+        //         'max_sensor' => 40,
+        //         'treshold_min_sensor' => 40,
+        //         'min_hijau' => 45,
+        //         'max_hijau' => 60,
+        //         'treshold_max_sensor' => 65,
+        //         'min_merah' => 65,
+        //         'max_merah' => 100,
+        //         'avg_sensor' => 55
+        //     ]);
+        // }
         if ($request->type_id == 22) {
             Ups::create([
                 'device_id' => $devid->id
             ]);
         }
-        if ($request->type_id == 24) {
-            Rack::create([
-                'device_id' => $devid->id
-            ]);
-        }
+        // if ($request->type_id == 24) {
+        //     Rack::create([
+        //         'device_id' => $devid->id
+        //     ]);
+        // }
 
         return back()->with('success', 'Device ' . $request->name . ' Berhasil di Tambah!');
     }
@@ -256,7 +256,7 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Ipaddress::where('id',$id)->update([
+        Ipaddress::where('id', $id)->update([
             'ipv4' => $request->ipv4,
             'netmask' => $request->netmask,
             'gateway' => $request->gateway,

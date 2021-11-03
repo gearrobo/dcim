@@ -139,7 +139,7 @@
       legend: {
         display: false
       },
-      barValueSpacing: 20,
+      barValueSpacing: 2,
       scales: {
         yAxes: [{
           ticks: {

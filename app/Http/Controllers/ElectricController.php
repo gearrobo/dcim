@@ -16,7 +16,7 @@ class ElectricController extends Controller
      */
     public function index()
     {
-        $devices = Device::where('type_id', 12)->get();
+        $devices = Device::where('type_id', 20)->get();
         $data = [
             'devices' => $devices
         ];
