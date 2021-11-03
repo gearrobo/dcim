@@ -1,5 +1,11 @@
 @extends('templates.layout')
 @section('webtitle','Home')
+<style type="text/css">
+  .coba {
+    width: 100%;
+    margin: 5px auto;
+  }
+</style>
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -56,7 +62,9 @@
               <span>Power IT Equipment</span>
             </div>
             <div class="card-body">
-              <div id="container" style="width: 740px; height: 150px; margin: 0 auto"></div>
+              <div class="coba">
+                <canvas id="linechart" width="100" height="20"></canvas>
+              </div>
             </div>
           </div>
         </div>
@@ -107,51 +115,44 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
   });
-
-  $(document).ready(function() {
-    var title = {
-      text: ''
-    };
-    var subtitle = {
-      text: ''
-    };
-    var xAxis = {
-      categories: [1, 2, 3, 4, 5, 6, 7, 8]
-    };
-    var yAxis = {
-      title: {
-        text: ''
-      },
-      plotLines: [{
-        value: 0,
-        width: .1,
-        color: '#808080'
-      }]
-    };
-    var tooltip = {
-      valueSuffix: ' Kw'
-    }
-    var legend = {
-      layout: 'horizontal',
-      align: 'right',
-      verticalAlign: 'bottom',
-      borderWidth: 0
-    };
-    var series = [{
-      name: '',
-      data: [10.32, 10.22, 10.43, 10.14, 10.25, 10.46, 10.27, 10.30]
+</script>
+<script type="text/javascript">
+  var ctx = document.getElementById("linechart").getContext("2d");
+  var data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [{
+      label: "Laptop",
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: "#29B0D0",
+      borderColor: "#29B0D0",
+      pointHoverBackgroundColor: "#29B0D0",
+      pointHoverBorderColor: "#29B0D0",
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8]
     }]
+  };
 
-    var json = {};
-    json.title = title;
-    json.subtitle = subtitle;
-    json.xAxis = xAxis;
-    json.yAxis = yAxis;
-    json.tooltip = tooltip;
-    json.legend = legend;
-    json.series = series;
-
-    $('#container').highcharts(json);
+  var myBarChart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: {
+      legend: {
+        display: false
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 0,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            color: "rgba(0, 0, 0, 0)",
+          }
+        }]
+      }
+    }
   });
 </script>
 @endsection

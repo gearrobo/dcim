@@ -78,7 +78,6 @@
         </script>
         <!-- Bootstrap 4 -->
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/assets/plugins/chart.js/Chart.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
         <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
@@ -90,6 +89,7 @@
         <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
         <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
         <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+        <script src="{{ asset('assets/dist/js/Chart.js') }}"></script>
         <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
         <!-- DataTables  & Plugins -->
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
