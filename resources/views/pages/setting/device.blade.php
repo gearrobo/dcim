@@ -79,7 +79,7 @@
                                                             <td align="center" class="m-auto">
                                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#edit" data-myid="{{ $device->id }}" data-mytype="{{$device->type_id}}" data-myname="{{ $device->name }}" data-mydescription="{{ $device->description }}"><i class="fas fa-edit"></i> Ubah</button>
                                                                 <a href="{{ route('setting.page.devices.destroy',['id'=>$device->id,'type_id'=>$device->type_id]) }}" class="btn btn-danger">Hapus</a>
-                                                                @if (($device->type_id != 14) && ($device->type_id !=16))
+                                                                @if (($device->type_id != 24) && ($device->type_id !=22))
                                                                 <a href="{{ route('setting.page.devices.detail',['id'=>$device->id]) }}" class="btn btn-success">Detail</a>
                                                                 @endif
                                                             </td>
