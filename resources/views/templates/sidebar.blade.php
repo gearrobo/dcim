@@ -14,7 +14,7 @@
       </div>
       <div class="pull-left info">
         <a href="#" class="d-block" style="font-size: 20px;">Admin 1</a>
-        <a href="http://drpdci.test/"><i class="fas fa-power-off text-lightblue"> LogOut</i></a>
+        <a href="#"><i class="fas fa-power-off text-lightblue"> LogOut</i></a>
       </div>
     </div>
 

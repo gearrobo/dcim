@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Sensor;
+use App\Sensor_log;
 use App\SensorType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class RoomController extends Controller
@@ -22,11 +24,11 @@ class RoomController extends Controller
         $dustid = 4;
         $doorid = 5;
 
-        $data['temp'] = Sensor::where('sensor_type_id', $tempid)->where('device_id',null)->avg('avg_sensor');
-        $data['hum'] = Sensor::where('sensor_type_id', $humid)->where('device_id',null)->avg('avg_sensor');
-        $data['smoke'] = Sensor::where('sensor_type_id', $smokeid)->where('device_id',null)->avg('avg_sensor');
-        $data['dust'] = Sensor::where('sensor_type_id', $dustid)->where('device_id',null)->avg('avg_sensor');
-        $data['doors'] = Sensor::where('sensor_type_id', $doorid)->where('device_id',null)->get();
+        $data['temp'] = Sensor::where('sensor_type_id', $tempid)->where('device_id', null)->avg('avg_sensor');
+        $data['hum'] = Sensor::where('sensor_type_id', $humid)->where('device_id', null)->avg('avg_sensor');
+        $data['smoke'] = Sensor::where('sensor_type_id', $smokeid)->where('device_id', null)->avg('avg_sensor');
+        $data['dust'] = Sensor::where('sensor_type_id', $dustid)->where('device_id', null)->avg('avg_sensor');
+        $data['doors'] = Sensor::where('sensor_type_id', $doorid)->where('device_id', null)->get();
         return view('pages.room.index')->with($data);
     }
 
@@ -38,28 +40,28 @@ class RoomController extends Controller
         $dustid = 4;
 
         if ($link == 'Temperature') {
-            $sensors = Sensor::where('sensor_type_id', $tempid)->where('device_id',null)->get();
+            $sensors = Sensor::where('sensor_type_id', $tempid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Suhu',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Humidity') {
-            $sensors = Sensor::where('sensor_type_id', $humid)->where('device_id',null)->get();
+            $sensors = Sensor::where('sensor_type_id', $humid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Kelembaban',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Smoke') {
-            $sensors = Sensor::where('sensor_type_id', $smokeid)->where('device_id',null)->get();
+            $sensors = Sensor::where('sensor_type_id', $smokeid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Asap',
                 'sensors' => $sensors
             ];
             return view('pages.room.sensor', with($data));
         } elseif ($link == 'Dust') {
-            $sensors = Sensor::where('sensor_type_id', $dustid)->where('device_id',null)->get();
+            $sensors = Sensor::where('sensor_type_id', $dustid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Debu',
                 'sensors' => $sensors
@@ -73,9 +75,14 @@ class RoomController extends Controller
     public function detail($link, $id)
     {
         if ($link == 'Suhu') {
-            $title = "Suhu";
-            $sensor = Sensor::find($id);
-            return view('pages.room.detail', compact('title', 'sensor'));
+            $data['title'] = "Suhu";
+            $data['sensor'] = Sensor::find($id);
+            $data['sensor_logs'] = Sensor_log::where('sensor_id',$id)->get();
+            $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
+            $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
+            $data['logs'] = json_encode($logs);
+            $data['avg_sensor'] = $avg;
+            return view('pages.room.detail', $data);
         } elseif ($link == 'Kelembaban') {
             $title = "Kelembaban";
             $sensor = Sensor::find($id);

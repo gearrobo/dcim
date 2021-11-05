@@ -78,9 +78,6 @@
         </script>
         <!-- Bootstrap 4 -->
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-        <script src="{{ asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
         <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
@@ -88,9 +85,8 @@
         <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
         <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
-        <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
         <script src="{{ asset('assets/dist/js/Chart.js') }}"></script>
-        <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
+        <!-- <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script> -->
         <!-- DataTables  & Plugins -->
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -105,10 +101,8 @@
         <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
         <!-- FLOT CHARTS -->
-        <script src="{{ asset('assets/plugins/flot/jquery.flot.js') }}"></script>
         <script src="{{ asset('assets/plugins/highcharts/highcharts.js') }}"></script>
         <script src="{{ asset('assets/plugins/highcharts/modules/exporting.js') }}"></script>
-        <script src="https://code.highcharts.com/modules/series-label.js"></script>
         <script src="{{ asset('assets/dist/js/gauge.min.js') }}"></script>
         <script src="{{ asset('assets/dist/js/webcam.min.js') }}"></script>
         <!--  -->

@@ -110,7 +110,7 @@
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 text-right">
                                             <div id="Tempvalue" class="huge">
-                                                @if ($title == 'Suhu') 
+                                                @if ($title == 'Suhu')
                                                 <span style="font-size:55px;font-weight: bold;">{{ $sensor->avg_sensor }} &degC</span>
                                                 @elseif ($title == 'Kelembaban')
                                                 <span style="font-size:55px;font-weight: bold;">{{ $sensor->avg_sensor }} %</span>
@@ -182,12 +182,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($sensor_logs as $sensor_log)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $sensor_log->sensor->name }}</td>
+                                            <td>{{ $sensor_log->avg_sensor }}</td>
+                                            <td>{{ $sensor_log->updated_at }}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -214,7 +216,8 @@
         }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     });
-
+    var logtime = <?php echo $logs; ?>
+    // console.log(logtime)
     $(document).ready(function() {
         var title = {
             text: '{{ $sensor->name }}'
@@ -223,7 +226,7 @@
             text: ''
         };
         var xAxis = {
-            categories: [1, 2, 3, 4, 5, 6, 7]
+            categories: <?php echo $logs; ?>
         };
         var yAxis = {
             title: {
@@ -246,7 +249,9 @@
         };
         var series = [{
             name: '{{ $title }}',
-            data: [1, 2, 3, 4, 5, 6, 7]
+            data: [<?php foreach ($avg_sensor as $j) {
+                echo $j.',';
+            } ?>]
         }]
 
         var json = {};
