@@ -137,7 +137,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <form action="../../../assets/config/export_excel.php" method="post" target="_blank">
+                                <form action="/export" method="post" target="_blank">
                                     <div class="form-group">
                                         <input type="date" id="tglawal" name="tglawal">
                                     </div>

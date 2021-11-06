@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SensorLogExport;
 use App\Sensor;
 use App\Sensor_log;
 use App\SensorType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoomController extends Controller
 {
@@ -165,4 +167,9 @@ class RoomController extends Controller
     {
         //
     }
+    public function export_excel()
+	{
+		// return Excel::download(new SiswaExport, 'siswa.xlsx');
+        return Excel::download(new SensorLogExport, 'sensorlog.xlsx');
+	}
 }
