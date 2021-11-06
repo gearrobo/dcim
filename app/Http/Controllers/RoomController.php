@@ -79,7 +79,7 @@ class RoomController extends Controller
         if ($link == 'Suhu') {
             $data['title'] = "Suhu";
             $data['sensor'] = Sensor::find($id);
-            $data['sensor_logs'] = Sensor_log::where('sensor_id',$id)->get();
+            $data['sensor_logs'] = Sensor_log::where('sensor_id', $id)->get();
             $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
             $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
             $data['logs'] = json_encode($logs);
@@ -167,9 +167,13 @@ class RoomController extends Controller
     {
         //
     }
-    public function export_excel()
-	{
-		// return Excel::download(new SiswaExport, 'siswa.xlsx');
-        return Excel::download(new SensorLogExport, 'sensorlog.xlsx');
-	}
+    public function export_excel(Request $request)
+    {
+        dd($request);
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
+        $id = $request->id;
+
+        return Excel::download(new SensorLogExport($tglawal, $tglakhir, $id), 'sensorlog.xlsx');
+    }
 }

@@ -138,6 +138,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <form action="/export" method="post" target="_blank">
+                                    @csrf
                                     <div class="form-group">
                                         <input type="date" id="tglawal" name="tglawal">
                                     </div>
@@ -149,7 +150,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <input type="hidden" value="" name="id">
+                                <input type="hidden" value="{{ $sensor->id }}" name="id">
                                 <input type="hidden" value="" name="name">
                                 <button name="excel" type="submit" class="btn btn-sm btn-warning"><span class="fas fa-save"></span>Export to EXCEL</button>
                             </div>
@@ -187,7 +188,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $sensor_log->sensor->name }}</td>
                                             <td>{{ $sensor_log->avg_sensor }}</td>
-                                            <td>{{ $sensor_log->updated_at }}</td>
+                                            <td>{{ $sensor_log->created_at }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

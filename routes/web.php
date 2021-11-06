@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DashboardController@index');
-Route::get('/export','RoomController@export_excel');
+Route::post('/export','RoomController@export_excel');
 
 Route::as('page.')->prefix('page')->group(function () {
     Route::as('room')->get('/room', 'RoomController@index');

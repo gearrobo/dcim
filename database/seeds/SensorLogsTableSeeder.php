@@ -1,6 +1,7 @@
 <?php
 
 use App\Sensor_log;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class SensorLogsTableSeeder extends Seeder
@@ -12,22 +13,29 @@ class SensorLogsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 11; $i++) { 
+        $year = 2021;
+        $month = 5;
+
+        for ($i = 1; $i < 30; $i++) {
+            $date = Carbon::create($year,$month ,$i , 0, 0, 0);
             Sensor_log::create([
                 'sensor_id' => 1,
-                'avg_sensor' => 17+$i,
+                'avg_sensor' => random_int(16, 28),
                 'L1' => null,
                 'L2' => null,
-                'L3' => null
+                'L3' => null,
+                'created_at'  => $date->format('Y-m-d H:i:s')
             ]);
         }
-        for ($i=0; $i < 11; $i++) { 
+        for ($i = 1; $i < 30; $i++) {
+            $date = Carbon::create($year,$month ,$i , 0, 0, 0);
             Sensor_log::create([
                 'sensor_id' => 2,
-                'avg_sensor' => 17+$i,
+                'avg_sensor' => mt_rand(17, 28),
                 'L1' => null,
                 'L2' => null,
-                'L3' => null
+                'L3' => null,
+                'created_at'  => $date->format('Y-m-d H:i:s')
             ]);
         }
     }
