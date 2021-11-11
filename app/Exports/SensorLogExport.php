@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Sensor_log;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class SensorLogExport implements FromCollection
@@ -21,6 +22,6 @@ class SensorLogExport implements FromCollection
     }
     public function collection()
     {
-        return Sensor_log::where('id', $this->id)->whereBetween('created_at', [$this->tglawal, $this->tglakhir])->get();
+        return Sensor_log::select('sensor_id','avg_sensor','L1','L2','L3','created_at')->where('sensor_id', $this->id)->whereBetween(DB::raw('DATE(`created_at`)'), [$this->tglawal, $this->tglakhir])->get();
     }
 }

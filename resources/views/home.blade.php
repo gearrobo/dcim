@@ -116,19 +116,20 @@
 
   });
 </script>
+
 <script type="text/javascript">
   var ctx = document.getElementById("linechart").getContext("2d");
   var data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: <?php echo $logs; ?>,
     datasets: [{
-      label: "Laptop",
+      label: "Power IT (Kw)",
       fill: false,
       lineTension: 0.1,
       backgroundColor: "#29B0D0",
       borderColor: "#29B0D0",
       pointHoverBackgroundColor: "#29B0D0",
       pointHoverBorderColor: "#29B0D0",
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 9, 8]
+      data: <?php echo $avg; ?>
     }]
   };
 

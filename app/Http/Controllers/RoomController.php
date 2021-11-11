@@ -169,11 +169,10 @@ class RoomController extends Controller
     }
     public function export_excel(Request $request)
     {
-        dd($request);
         $tglawal = $request->tglawal;
         $tglakhir = $request->tglakhir;
         $id = $request->id;
 
-        return Excel::download(new SensorLogExport($tglawal, $tglakhir, $id), 'sensorlog.xlsx');
+        return Excel::download(new SensorLogExport($tglawal, $tglakhir, $id), 'Sensor '.$tglawal.'||'.$tglakhir.'.xlsx');
     }
 }

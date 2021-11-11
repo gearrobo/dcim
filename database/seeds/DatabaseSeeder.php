@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(IpaddressTableSeeder::class);
         $this->call(SensorTableSeeder::class);
         $this->call(SensorLogsTableSeeder::class);
+        $this->call(ElectricTableSeeder::class);
     }
 }

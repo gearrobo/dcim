@@ -17,7 +17,7 @@ class CreateSensorLogsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('sensor_id');
             $table->foreign('sensor_id')->references('id')->on('sensors');
-            $table->string('avg_sensor');
+            $table->double('avg_sensor', 11, 2);
             $table->string('L1')->nullable();
             $table->string('L2')->nullable();
             $table->string('L3')->nullable();
