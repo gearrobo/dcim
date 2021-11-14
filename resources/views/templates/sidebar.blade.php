@@ -36,7 +36,7 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="/" class="nav-link">
+          <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
           <i class="nav-icon fas fa-digital-tachograph"></i>
             <p>
               Dashboard Utama
@@ -44,7 +44,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('page.room') }}" class="nav-link">
+          <a href="{{ route('page.room') }}" class="nav-link {{ request()->routeIs('page.room') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Ruangan Server
@@ -52,7 +52,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/rackserver" class="nav-link">
+          <a href="/rackserver" class="nav-link {{ request()->is('rackserver') ? 'active' : '' }}">
             <i class="nav-icon fas fa-server"></i>
             <p>
               Rack Server
@@ -60,7 +60,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/electric" class="nav-link">
+          <a href="/electric" class="nav-link {{ request()->is('electric') ? 'active' : '' }}">
             <i class="nav-icon fas fa-bolt"></i>
             <p>
               Kelistrikan
@@ -68,7 +68,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('generator.page')}}" class="nav-link">
+          <a href="{{route('generator.page')}}" class="nav-link {{ request()->routeIs('generator.page') ? 'active' : '' }}">
             <i class="nav-icon fas fa-solar-panel"></i>
             <p>
               Genset
@@ -76,7 +76,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('ups.page') }}" class="nav-link">
+          <a href="{{ route('ups.page') }}" class="nav-link {{ request()->routeIs('ups.page') ? 'active' : '' }}">
             <i class="nav-icon fas fa-plug"></i>
             <p>
               UPS

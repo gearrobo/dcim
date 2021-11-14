@@ -83,7 +83,7 @@ class RoomController extends Controller
             $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
             $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
             $data['logs'] = json_encode($logs);
-            $data['avg_sensor'] = $avg;
+            $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
         } elseif ($link == 'Kelembaban') {
             $title = "Kelembaban";

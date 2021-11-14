@@ -250,9 +250,7 @@
         };
         var series = [{
             name: '{{ $title }}',
-            data: [<?php foreach ($avg_sensor as $j) {
-                echo $j.',';
-            } ?>]
+            data: <?php echo $avg_sensor; ?>
         }]
 
         var json = {};
