@@ -26,8 +26,9 @@ class Sensor extends Model
         'L1',
         'L2',
         'L3',
-        'address',
-        'register'
+        'id_modbus',
+        'address_modbus',
+        'register_modbus'
     ];
     public function sensortype(){
         return $this->belongsTo('App\SensorType','sensor_type_id');
