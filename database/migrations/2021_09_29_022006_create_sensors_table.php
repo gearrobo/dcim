@@ -36,6 +36,8 @@ class CreateSensorsTable extends Migration
             $table->string('L1')->nullable();
             $table->string('L2')->nullable();
             $table->string('L3')->nullable();
+            $table->string('address')->nullable();
+            $table->string('register')->nullable();
             $table->timestamps();
         });
     }

@@ -28,7 +28,9 @@ class SensorTableSeeder extends Seeder
             'treshold_max_sensor' => 28,
             'min_merah' => 28,
             'max_merah' => 35,
-            'avg_sensor' => 23
+            'avg_sensor' => 23,
+            'address' => null,
+            'register' => null
         ]);
         Sensor::create([
             'name' => 'Sensor 2',

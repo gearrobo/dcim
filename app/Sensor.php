@@ -25,7 +25,9 @@ class Sensor extends Model
         'avg_sensor',
         'L1',
         'L2',
-        'L3'
+        'L3',
+        'address',
+        'register'
     ];
     public function sensortype(){
         return $this->belongsTo('App\SensorType','sensor_type_id');
