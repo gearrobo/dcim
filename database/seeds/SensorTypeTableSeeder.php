@@ -39,9 +39,10 @@ class SensorTypeTableSeeder extends Seeder
             21 => 'Pac',
             22 => 'Ups',
             23 => 'Pdu',
-            24 => 'Rack'
+            24 => 'Rack',
+            25 => 'Sensor'
         ];
-        for ($i = 20; $i < 25; $i++) {
+        for ($i = 20; $i < 26; $i++) {
             DB::table('sensor_types')->insert([
                 'name' => $data[$i],
                 'type' => 'alat',

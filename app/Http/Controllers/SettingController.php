@@ -32,9 +32,10 @@ class SettingController extends Controller
     }
     public function sensor()
     {
-        $sensors = Sensor::all();
+        $sensors = Sensor::with('device')->get();
         $sensortypes = SensorType::whereType('sensor')->get();
-        return view('pages.setting.sensor', compact('sensors', 'sensortypes'));
+        $devices = Device::all();
+        return view('pages.setting.sensor', compact('sensors', 'sensortypes', 'devices'));
     }
 
     public function devices()
@@ -75,6 +76,7 @@ class SettingController extends Controller
         Device::create([
             'name' => $request->name,
             'type_id' => $request->type_id,
+            'ip_address' => $request->ip_address,
             'description' => $request->description
         ]);
         $devid = Device::where('name', $request->name)->first();
@@ -231,7 +233,8 @@ class SettingController extends Controller
         $data = [
             'device' => Device::find($id),
             'sensors' => Sensor::where('device_id', $id)->get(),
-            'sensortypes' => SensorType::whereType('sensor')->get()
+            'sensortypes' => SensorType::whereType('sensor')->get(),
+            'devices' => Device::all()
         ];
         return view('pages.setting.detail')->with($data);
     }
@@ -279,6 +282,7 @@ class SettingController extends Controller
     {
         Device::where('id', $request->id)->update([
             'name' => $request->name,
+            'ip_address' => $request->ip_address,
             'description' => $request->description
         ]);
         return back()->with('info', 'Device ' . $request->name . ' Berhasil di Ubah!');
@@ -289,6 +293,7 @@ class SettingController extends Controller
         Sensor::where('id', $request->id)->update([
             'name' => $request->name,
             'sensor_type_id' => $request->sensor_type_id,
+            'device_id' => $request->device_id,
             'description' => $request->description,
             'min_sensor' => $request->min_sensor,
             'max_sensor' => $request->max_sensor,

@@ -33,10 +33,7 @@ class ElectricTableSeeder extends Seeder
             'treshold_max_sensor' => 450,
             'min_merah' => 450,
             'max_merah' => 600,
-            'avg_sensor' => 350,
-            'L1' => 345,
-            'L2' => 350,
-            'L3' => 355,
+            'avg_sensor' => 350
         ]);
         Sensor::create([
             'name' => 'Current',
@@ -70,10 +67,7 @@ class ElectricTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             Sensor_log::create([
                 'sensor_id' => 5,
-                'avg_sensor' => random_int(29, 36),
-                'L1' => random_int(30, 35),
-                'L2' => random_int(30, 35),
-                'L3' => random_int(30, 35),
+                'avg_sensor' => random_int(29, 36)
             ]);
         }
     }

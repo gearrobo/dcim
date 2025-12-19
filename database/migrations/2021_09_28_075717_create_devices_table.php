@@ -18,6 +18,7 @@ class CreateDevicesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('type_id')->on('sensor_types');
+            $table->string('ip_address')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

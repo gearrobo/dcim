@@ -58,7 +58,7 @@
                                                         <tr>
                                                             <th>No</th>
                                                             <th>Nama</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Device</th>
                                                             <th>Min | Max Sensor</th>
                                                             <th>Min Treshold | Min Hijau</th>
                                                             <th>Max Hijau | Max Treshold</th>
@@ -73,7 +73,7 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $sensor->name }}</td>
-                                                            <td>{{ $sensor->description }}</td>
+                                                            <td>{{ $sensor->device ? $sensor->device->name : '-' }}</td>
                                                             <td align="center">{{$sensor->min_sensor}} | {{$sensor->max_sensor}}</td>
                                                             <td align="center">{{$sensor->treshold_min_sensor}} | {{$sensor->min_hijau}}</td>
                                                             <td align="center">{{$sensor->max_hijau}} | {{$sensor->treshold_max_sensor}}</td>
@@ -81,7 +81,7 @@
                                                             <td>{{$sensor->id}}</td>
                                                             <td>{{$sensor->updated_at}}</td>
                                                             <td align="center">
-                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#edit" data-mytype="{{ $sensor->type }}" data-myid="{{ $sensor->id }}" data-myname="{{ $sensor->name }}" data-mydescription="{{ $sensor->description }}" data-myminsensor="{{$sensor->min_sensor}}" data-mymaxsensor="{{$sensor->max_sensor}}" data-mytresholdminsensor="{{$sensor->treshold_min_sensor}}" data-myminhijau="{{$sensor->min_hijau}}" data-mymaxhijau="{{$sensor->max_hijau}}" data-mytresholdmaxsensor="{{$sensor->treshold_max_sensor}}" data-myminmerah="{{$sensor->min_merah}}" data-mymaxmerah="{{$sensor->max_merah}}" data-myavgsensor="{{$sensor->avg_sensor}}"><i class="fas fa-edit"></i> Ubah</button>
+                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#edit" data-mytype="{{ $sensor->type }}" data-myid="{{ $sensor->id }}" data-myname="{{ $sensor->name }}" data-mydeviceid="{{ $sensor->device_id }}" data-mydescription="{{ $sensor->description }}" data-myminsensor="{{$sensor->min_sensor}}" data-mymaxsensor="{{$sensor->max_sensor}}" data-mytresholdminsensor="{{$sensor->treshold_min_sensor}}" data-myminhijau="{{$sensor->min_hijau}}" data-mymaxhijau="{{$sensor->max_hijau}}" data-mytresholdmaxsensor="{{$sensor->treshold_max_sensor}}" data-myminmerah="{{$sensor->min_merah}}" data-mymaxmerah="{{$sensor->max_merah}}" data-myavgsensor="{{$sensor->avg_sensor}}"><i class="fas fa-edit"></i> Ubah</button>
                                                                 <a href="{{ route('setting.page.sensor.destroy',['id'=>$sensor->id]) }}" class="btn btn-danger">Hapus</a>
                                                             </td>
                                                         </tr>
@@ -121,6 +121,15 @@
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="device_id">Device</label>
+                        <select name="device_id" id="device_id" class="form-control">
+                            <option value="">-- Pilih Device --</option>
+                            @foreach ($devices as $dev)
+                            <option value="{{$dev->id}}">{{$dev->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="name">Type</label>
@@ -270,6 +279,7 @@
         var button = $(event.relatedTarget)
         var id = button.data('myid')
         var name = button.data('myname')
+        var device_id = button.data('mydeviceid')
         var type = button.data('mytype')
         var description = button.data('mydescription')
         var min_sensor = button.data('myminsensor')
@@ -285,6 +295,7 @@
         var modal = $(this)
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #name').val(name);
+        modal.find('.modal-body #device_id').val(device_id);
         modal.find('.modal-body #type').val(type);
         modal.find('.modal-body #description').val(description);
         modal.find('.modal-body #min_sensor').val(min_sensor);
