@@ -22,7 +22,7 @@ class CreateSensorsTable extends Migration
             $table->foreign('sensor_type_id')->references('type_id')->on('sensor_types');
             $table->unsignedBigInteger('device_id')->nullable();
             $table->foreign('device_id')->references('id')->on('devices');
-            $table->tinyInteger('status')->nullable();
+            $table->string('status_x')->nullable();
             $table->integer('floor_id')->nullable();
             $table->integer('min_sensor');
             $table->integer('max_sensor');

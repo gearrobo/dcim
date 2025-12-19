@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body text-center">
-                                    <span style="font-size:50px;font-weight: bold;">{{ $device->sensor->where('sensor_type_id',8)->first()->avg_sensor }} Kw</span>
+                                    <span style="font-size:50px;font-weight: bold;">{{ $device->sensor->where('sensor_type_id',8)->first()->avg_sensor ?? '-' }} Kw</span>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>

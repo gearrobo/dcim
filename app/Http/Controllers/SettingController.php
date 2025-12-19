@@ -79,116 +79,56 @@ class SettingController extends Controller
             'ip_address' => $request->ip_address,
             'description' => $request->description
         ]);
-        $devid = Device::where('name', $request->name)->first();
-        // dd($devid->id, $request->type_id);
-        if ($request->type_id == 20) {
-            Sensor::create([
-                'name' => 'Voltage',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 6,
-                'min_sensor' => 0,
-                'max_sensor' => 200,
-                'treshold_min_sensor' => 200,
-                'min_hijau' => 250,
-                'max_hijau' => 400,
-                'treshold_max_sensor' => 450,
-                'min_merah' => 450,
-                'max_merah' => 600,
-                'avg_sensor' => 350
-            ]);
-            Sensor::create([
-                'name' => 'Current',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 7,
-                'min_sensor' => 0,
-                'max_sensor' => 0,
-                'treshold_min_sensor' => 0,
-                'min_hijau' => 15,
-                'max_hijau' => 25,
-                'treshold_max_sensor' => 30,
-                'min_merah' => 30,
-                'max_merah' => 50,
-                'avg_sensor' => 35
-            ]);
-            Sensor::create([
-                'name' => 'Power',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 8,
-                'min_sensor' => 0,
-                'max_sensor' => 0,
-                'treshold_min_sensor' => 0,
-                'min_hijau' => 15,
-                'max_hijau' => 25,
-                'treshold_max_sensor' => 30,
-                'min_merah' => 30,
-                'max_merah' => 50,
-                'avg_sensor' => 35
-            ]);
-        }
-        if ($request->type_id == 21) {
-            Sensor::create([
-                'name' => 'Temperature',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 1,
-                'min_sensor' => 0,
-                'max_sensor' => 17,
-                'treshold_min_sensor' => 17,
-                'min_hijau' => 20,
-                'max_hijau' => 25,
-                'treshold_max_sensor' => 28,
-                'min_merah' => 28,
-                'max_merah' => 35,
-                'avg_sensor' => 23
-            ]);
-            Sensor::create([
-                'name' => 'Humidity',
-                'device_id' => $devid->id,
-                'sensor_type_id' => 2,
-                'min_sensor' => 0,
-                'max_sensor' => 40,
-                'treshold_min_sensor' => 40,
-                'min_hijau' => 45,
-                'max_hijau' => 60,
-                'treshold_max_sensor' => 65,
-                'min_merah' => 65,
-                'max_merah' => 100,
-                'avg_sensor' => 55
-            ]);
-        }
-        if ($request->type_id == 22) {
-            Ups::create([
-                'device_id' => $devid->id
-            ]);
-        }
-        if ($request->type_id == 24) {
-            Rack::create([
-                'device_id' => $devid->id
-            ]);
-        }
 
         return back()->with('success', 'Device ' . $request->name . ' Berhasil di Tambah!');
     }
     public function storesensor(Request $request)
     {
-        $avg = $request->avg_sensor;
+        $avg = $request->avg_sensor ?? 20;
         if ($request->sensor_type_id == 5) {
             $avg = 1;
         }
-        Sensor::create([
+
+        $data = [
             'name' => $request->name,
             'sensor_type_id' => $request->sensor_type_id,
+            'device_id' => $request->device_id,
             'description' => $request->description,
-            'min_sensor' => $request->min_sensor,
-            'max_sensor' => $request->max_sensor,
-            'treshold_min_sensor' => $request->treshold_min_sensor,
-            'min_hijau' => $request->min_hijau,
-            'max_hijau' => $request->max_hijau,
-            'treshold_max_sensor' => $request->treshold_max_sensor,
-            'min_merah' => $request->min_merah,
-            'max_merah' => $request->max_merah,
-            'avg_sensor' => $avg
-        ]);
-        return back()->with('success', 'Sensor Type ' . $request->name . ' Berhasil di Tambah!');
+            'min_sensor' => $request->min_sensor ?? 0,
+            'max_sensor' => $request->max_sensor ?? 0,
+            'treshold_min_sensor' => $request->treshold_min_sensor ?? 0,
+            'min_hijau' => $request->min_hijau ?? 0,
+            'max_hijau' => $request->max_hijau ?? 0,
+            'treshold_max_sensor' => $request->treshold_max_sensor ?? 0,
+            'min_merah' => $request->min_merah ?? 0,
+            'max_merah' => $request->max_merah ?? 0,
+
+            'avg_sensor' => $avg,
+            'protocol_type' => $request->protocol_type,
+            'is_active' => $request->has('is_active') ? 1 : 0,
+            'status_sensor' => $request->has('is_active') ? 'online' : 'inactive'
+        ];
+
+        // Add protocol-specific fields based on protocol type
+        if ($request->protocol_type === 'snmp') {
+            // SNMP fields
+            $data['versi_snmp'] = $request->versi_snmp;
+            $data['community'] = $request->community;
+            $data['snmp_ip_address'] = $request->snmp_ip_address;
+            $data['oid_name'] = $request->oid_name;
+        } else {
+            // Modbus fields (tcp, rtu, enc, http)
+            $data['ip_address'] = $request->ip_address;
+            $data['port'] = $request->port;
+            $data['slave_id'] = $request->slave_id;
+            $data['address'] = $request->address;
+            $data['quantity'] = $request->quantity;
+            $data['data_type'] = $request->data_type;
+        }
+
+        Sensor::create($data);
+        
+        return back()->with('success', 'Sensor ' . $request->name . ' Berhasil di Tambah!');
     }
 
     public function storerack(Request $request)
@@ -290,20 +230,57 @@ class SettingController extends Controller
 
     public function updatesensor(Request $request)
     {
-        Sensor::where('id', $request->id)->update([
+        $data = [
             'name' => $request->name,
             'sensor_type_id' => $request->sensor_type_id,
             'device_id' => $request->device_id,
             'description' => $request->description,
-            'min_sensor' => $request->min_sensor,
-            'max_sensor' => $request->max_sensor,
-            'treshold_min_sensor' => $request->treshold_min_sensor,
-            'min_hijau' => $request->min_hijau,
-            'max_hijau' => $request->max_hijau,
-            'treshold_max_sensor' => $request->treshold_max_sensor,
-            'min_merah' => $request->min_merah,
-            'max_merah' => $request->max_merah,
-        ]);
+            'min_sensor' => $request->min_sensor ?? 0,
+            'max_sensor' => $request->max_sensor ?? 0,
+            'treshold_min_sensor' => $request->treshold_min_sensor ?? 0,
+            'min_hijau' => $request->min_hijau ?? 0,
+            'max_hijau' => $request->max_hijau ?? 0,
+            'treshold_max_sensor' => $request->treshold_max_sensor ?? 0,
+            'min_merah' => $request->min_merah ?? 0,
+            'max_merah' => $request->max_merah ?? 0,
+
+            'avg_sensor' => $request->avg_sensor ?? 20,
+            'protocol_type' => $request->protocol_type,
+            'is_active' => $request->has('is_active') ? 1 : 0,
+            'status_sensor' => $request->has('is_active') ? 'online' : 'inactive'
+        ];
+
+        // Add protocol-specific fields based on protocol type
+        if ($request->protocol_type === 'snmp') {
+            // SNMP fields
+            $data['versi_snmp'] = $request->versi_snmp;
+            $data['community'] = $request->community;
+            $data['snmp_ip_address'] = $request->snmp_ip_address;
+            $data['oid_name'] = $request->oid_name;
+            // Clear Modbus fields
+            $data['ip_address'] = null;
+            $data['port'] = null;
+            $data['slave_id'] = null;
+            $data['address'] = null;
+            $data['quantity'] = null;
+            $data['data_type'] = null;
+        } else {
+            // Modbus fields (tcp, rtu, enc, http)
+            $data['ip_address'] = $request->ip_address;
+            $data['port'] = $request->port;
+            $data['slave_id'] = $request->slave_id;
+            $data['address'] = $request->address;
+            $data['quantity'] = $request->quantity;
+            $data['data_type'] = $request->data_type;
+            // Clear SNMP fields
+            $data['versi_snmp'] = null;
+            $data['community'] = null;
+            $data['snmp_ip_address'] = null;
+            $data['oid_name'] = null;
+        }
+
+        Sensor::where('id', $request->id)->update($data);
+        
         return back()->with('info', 'Sensor ' . $request->name . ' Berhasil di Ubah!');
     }
 
