@@ -41,34 +41,36 @@ class RoomController extends Controller
         $smokeid = 3;
         $dustid = 4;
 
+
         if ($link == 'Temperature') {
             $sensors = Sensor::where('sensor_type_id', $tempid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Suhu',
                 'sensors' => $sensors
             ];
-            return view('pages.room.sensor', with($data));
+            return view('pages.room.sensor', $data);
+
         } elseif ($link == 'Humidity') {
             $sensors = Sensor::where('sensor_type_id', $humid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Kelembaban',
                 'sensors' => $sensors
             ];
-            return view('pages.room.sensor', with($data));
+            return view('pages.room.sensor', $data);
         } elseif ($link == 'Smoke') {
             $sensors = Sensor::where('sensor_type_id', $smokeid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Asap',
                 'sensors' => $sensors
             ];
-            return view('pages.room.sensor', with($data));
+            return view('pages.room.sensor', $data);
         } elseif ($link == 'Dust') {
             $sensors = Sensor::where('sensor_type_id', $dustid)->where('device_id', null)->get();
             $data = [
                 'title' => 'Debu',
                 'sensors' => $sensors
             ];
-            return view('pages.room.sensor', with($data));
+            return view('pages.room.sensor', $data);
         } else {
             echo "tidak ada";
         }
@@ -85,18 +87,19 @@ class RoomController extends Controller
             $data['logs'] = json_encode($logs);
             $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
+
         } elseif ($link == 'Kelembaban') {
-            $title = "Kelembaban";
-            $sensor = Sensor::find($id);
-            return view('pages.room.detail', compact('title', 'sensor'));
+            $data['title'] = "Kelembaban";
+            $data['sensor'] = Sensor::find($id);
+            return view('pages.room.detail', $data);
         } elseif ($link == 'Asap') {
-            $title = "Asap";
-            $sensor = Sensor::find($id);
-            return view('pages.room.detail', compact('title', 'sensor'));
+            $data['title'] = "Asap";
+            $data['sensor'] = Sensor::find($id);
+            return view('pages.room.detail', $data);
         } elseif ($link == 'Debu') {
-            $title = "Debu";
-            $sensor = Sensor::find($id);
-            return view('pages.room.detail', compact('title', 'sensor'));
+            $data['title'] = "Debu";
+            $data['sensor'] = Sensor::find($id);
+            return view('pages.room.detail', $data);
         } else {
             echo "page tidak ada";
         }
