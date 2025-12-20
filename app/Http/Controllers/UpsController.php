@@ -17,7 +17,7 @@ class UpsController extends Controller
         $data= [
             'upses' => Ups::all()
         ];
-        return view('pages.ups.index')->with($data);
+        return view('pages.ups.index', $data);
     }
 
     public function detail($id)
@@ -25,7 +25,7 @@ class UpsController extends Controller
         $data = [
             'ups' => Ups::find($id)
         ];
-        return view('pages.ups.detail')->with($data);
+        return view('pages.ups.detail', $data);
     }
 
     /**

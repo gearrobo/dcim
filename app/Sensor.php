@@ -12,6 +12,7 @@ class Sensor extends Model
         'status',
         'sensor_type_id',
         'device_id',
+        'detail_sensor',
         'floor_id',
         'min_sensor',
         'max_sensor',

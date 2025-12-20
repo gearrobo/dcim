@@ -26,12 +26,58 @@ class RoomController extends Controller
         $dustid = 4;
         $doorid = 5;
 
-        $data['temp'] = Sensor::where('sensor_type_id', $tempid)->where('device_id', null)->avg('avg_sensor');
-        $data['hum'] = Sensor::where('sensor_type_id', $humid)->where('device_id', null)->avg('avg_sensor');
-        $data['smoke'] = Sensor::where('sensor_type_id', $smokeid)->where('device_id', null)->avg('avg_sensor');
-        $data['dust'] = Sensor::where('sensor_type_id', $dustid)->where('device_id', null)->avg('avg_sensor');
-        $data['doors'] = Sensor::where('sensor_type_id', $doorid)->where('device_id', null)->get();
-        return view('pages.room.index')->with($data);
+        $data['temp'] = Sensor::where('sensor_type_id', $tempid)
+            ->whereNotNull('device_id')
+            ->avg('avg_sensor');
+
+        if ($data['temp'] === null) {
+            $data['temp'] = Sensor::where('sensor_type_id', $tempid)
+                ->whereNull('device_id')
+                ->avg('avg_sensor');
+        }
+
+        $data['hum'] = Sensor::where('sensor_type_id', $humid)
+            ->whereNotNull('device_id')
+            ->avg('avg_sensor');
+
+        if ($data['hum'] === null) {
+            $data['hum'] = Sensor::where('sensor_type_id', $humid)
+                ->whereNull('device_id')
+                ->avg('avg_sensor');
+        }
+
+        $data['smoke'] = Sensor::where('sensor_type_id', $smokeid)
+            ->whereNotNull('device_id')
+            ->avg('avg_sensor');
+
+        if ($data['smoke'] === null) {
+            $data['smoke'] = Sensor::where('sensor_type_id', $smokeid)
+                ->whereNull('device_id')
+                ->avg('avg_sensor');
+        }
+
+        $data['dust'] = Sensor::where('sensor_type_id', $dustid)
+            ->whereNotNull('device_id')
+            ->avg('avg_sensor');
+
+        if ($data['dust'] === null) {
+            $data['dust'] = Sensor::where('sensor_type_id', $dustid)
+                ->whereNull('device_id')
+                ->avg('avg_sensor');
+        }
+
+
+        $data['doors'] = Sensor::where('sensor_type_id', $doorid)
+            ->whereNotNull('device_id')
+            ->get();
+
+        if ($data['doors']->isEmpty()) {
+            $data['doors'] = Sensor::where('sensor_type_id', $doorid)
+                ->whereNull('device_id')
+                ->get();
+        }
+
+        return view('pages.room.index', $data);
     }
 
     public function sensor($link)
@@ -88,17 +134,33 @@ class RoomController extends Controller
             $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
 
+
         } elseif ($link == 'Kelembaban') {
             $data['title'] = "Kelembaban";
             $data['sensor'] = Sensor::find($id);
+            $data['sensor_logs'] = Sensor_log::where('sensor_id', $id)->get();
+            $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
+            $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
+            $data['logs'] = json_encode($logs);
+            $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
         } elseif ($link == 'Asap') {
             $data['title'] = "Asap";
             $data['sensor'] = Sensor::find($id);
+            $data['sensor_logs'] = Sensor_log::where('sensor_id', $id)->get();
+            $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
+            $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
+            $data['logs'] = json_encode($logs);
+            $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
         } elseif ($link == 'Debu') {
             $data['title'] = "Debu";
             $data['sensor'] = Sensor::find($id);
+            $data['sensor_logs'] = Sensor_log::where('sensor_id', $id)->get();
+            $logs = Sensor_log::select("created_at as time")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('time');
+            $avg = Sensor_log::select("avg_sensor as avg")->where('sensor_id', $id)->orderBy('id', 'ASC')->pluck('avg');
+            $data['logs'] = json_encode($logs);
+            $data['avg_sensor'] = json_encode($avg);
             return view('pages.room.detail', $data);
         } else {
             echo "page tidak ada";
