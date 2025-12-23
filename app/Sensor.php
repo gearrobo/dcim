@@ -23,6 +23,7 @@ class Sensor extends Model
         'min_merah',
         'max_merah',
         'avg_sensor',
+<<<<<<< HEAD
         'location_monitoring',
         'protocol_type',
         'ip_address',
@@ -38,6 +39,13 @@ class Sensor extends Model
         'is_active',
         'last_seen',
         'status_sensor'
+=======
+        'L1',
+        'L2',
+        'L3',
+        'address',
+        'register'
+>>>>>>> parent of 25c037f (ok)
     ];
     public function sensortype(){
         return $this->belongsTo('App\SensorType','sensor_type_id');

@@ -33,6 +33,7 @@ class CreateSensorsTable extends Migration
             $table->integer('min_merah');
             $table->integer('max_merah');
             $table->string('avg_sensor')->default('20');
+<<<<<<< HEAD
             $table->string('location_monitoring')->nullable();
             $table->enum('protocol_type', ['tcp', 'rtu', 'snmp', 'http', 'enc'])->nullable();
             $table->string('ip_address')->nullable();
@@ -48,6 +49,13 @@ class CreateSensorsTable extends Migration
             $table->tinyInteger('is_active')->nullable();
             $table->timestamp('last_seen')->nullable();
             $table->enum('status_sensor',['online','offline','inactive'])->nullable();
+=======
+            $table->string('L1')->nullable();
+            $table->string('L2')->nullable();
+            $table->string('L3')->nullable();
+            $table->string('address')->nullable();
+            $table->string('register')->nullable();
+>>>>>>> parent of 25c037f (ok)
             $table->timestamps();
         });
     }
