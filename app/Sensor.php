@@ -12,7 +12,7 @@ class Sensor extends Model
         'status',
         'sensor_type_id',
         'device_id',
-        'detail_sensor',
+        'status',
         'floor_id',
         'min_sensor',
         'max_sensor',
@@ -23,26 +23,12 @@ class Sensor extends Model
         'min_merah',
         'max_merah',
         'avg_sensor',
-        'location_monitoring',
-        'protocol_type',
-        'ip_address',
-        'port',
-        'versi_snmp',
-        'community',
-        'snmp_ip_address',
-        'oid_name',
-        'slave_id',
-        'address',
-        'quantity',
-        'data_type',
-        'is_active',
-        'last_seen',
-        'status_sensor',
         'L1',
         'L2',
         'L3',
-        'address',
-        'register'
+        'id_modbus',
+        'address_modbus',
+        'register_modbus'
     ];
     public function sensortype(){
         return $this->belongsTo('App\SensorType','sensor_type_id');

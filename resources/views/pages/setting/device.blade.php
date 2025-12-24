@@ -11,8 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="?page=">Home</a></li>
-                    <li class="breadcrumb-item ">Pengaturan</li>
-                    <li class="breadcrumb-item active">Device</li>
+                    <li class="breadcrumb-item active">Pengaturan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -67,7 +66,6 @@
                                                         <tr>
                                                             <th>No</th>
                                                             <th>Nama</th>
-                                                            <th>IP</th>
                                                             <th>Keterangan</th>
                                                             <th>&nbsp;</th>
                                                         </tr>
@@ -77,10 +75,9 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $device->name }}</td>
-                                                            <td>{{ $device->ip_address }}</td>
                                                             <td>{{ $device->description }}</td>
                                                             <td align="center" class="m-auto">
-                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#edit" data-myid="{{ $device->id }}" data-mytype="{{$device->type_id}}" data-myname="{{ $device->name }}" data-myip="{{ $device->ip_address }}" data-mydescription="{{ $device->description }}"><i class="fas fa-edit"></i> Ubah</button>
+                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#edit" data-myid="{{ $device->id }}" data-mytype="{{$device->type_id}}" data-myname="{{ $device->name }}" data-mydescription="{{ $device->description }}"><i class="fas fa-edit"></i> Ubah</button>
                                                                 <a href="{{ route('setting.page.devices.destroy',['id'=>$device->id,'type_id'=>$device->type_id]) }}" class="btn btn-danger">Hapus</a>
                                                                 @if (($device->type_id != 24) && ($device->type_id !=22))
                                                                 <a href="{{ route('setting.page.devices.detail',['id'=>$device->id]) }}" class="btn btn-success">Detail</a>
@@ -134,10 +131,6 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">IP Address</label>
-                        <input type="text" id="ip_address" name="ip_address" class="form-control" required id="ip_address">
-                    </div>
-                    <div class="form-group">
                         <label for="description">Deskripsi</label>
                         <textarea class="form-control" rows="3" name="description" id="description"></textarea>
                     </div>
@@ -173,10 +166,6 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">IP Address</label>
-                        <input type="text" id="ip_address" name="ip_address" class="form-control" required id="ip_address">
-                    </div>
-                    <div class="form-group">
                         <label for="description">Deskripsi</label>
                         <textarea class="form-control" rows="3" name="description" id="description"></textarea>
                     </div>
@@ -206,14 +195,12 @@
         var id = button.data('myid')
         var name = button.data('myname')
         var type = button.data('mytype')
-        var ip = button.data('myip')
         var description = button.data('mydescription')
 
         var modal = $(this)
         modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #name').val(name);
-        modal.find('.modal-body #type_id').val(type);
-        modal.find('.modal-body #ip_address').val(ip);
+        modal.find('.modal-body #type').val(type);
         modal.find('.modal-body #description').val(description);
     })
 </script>

@@ -35,7 +35,7 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
-                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Suhu') }}" class="text-blue">Suhu</a></span>
+                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Temperature') }}" class="text-blue">Suhu</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
-                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Kelembaban') }}" class="text-blue">Kelembaban</a></span>
+                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Humidity') }}" class="text-blue">Kelembaban</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
-                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Asap') }}" class="text-blue">Gas Asap</a></span>
+                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Smoke') }}" class="text-blue">Gas Asap</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                 <div class="card-header" style="background-color:#d9edf7;color:#31708f; border:-1px!important; ">
                                     <div class="row">
                                         <div class="col-sm-12 ">
-                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Debu') }}" class="text-blue">Debu</a></span>
+                                            <span style="font-size:18px;font-weight:400"><a href="{{ route('page.room.sensor','Dust') }}" class="text-blue">Debu</a></span>
                                         </div>
                                     </div>
                                 </div>

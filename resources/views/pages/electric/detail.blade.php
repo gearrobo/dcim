@@ -69,7 +69,7 @@
                 <div class="raw">
                     <div class="card card-info">
                         <div class="card-header bg-info mb-3">
-                            <b class="text-white"><i class="fas fa-history"></i> Last Update &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $volt->updated_at ?? '-' }}</strong> </b>
+                            <b class="text-white"><i class="fas fa-history"></i> Last Update &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $volt->updated_at }}</strong> </b>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
@@ -85,7 +85,7 @@
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 text-right">
                                             <div id="Tempvalue" class="huge">
-                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',6)->first()->avg_sensor ?? '-' }} Volt</span>
+                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',6)->first()->avg_sensor }} Volt</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -105,7 +105,7 @@
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 text-right">
                                             <div id="Tempvalue" class="huge">
-                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',7)->first()->avg_sensor ?? '-' }} A</span>
+                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',7)->first()->avg_sensor }} A</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -125,7 +125,7 @@
                                     <div class="card-body text-center">
                                         <div class="col-xs-12 text-right">
                                             <div id="Tempvalue" class="huge">
-                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',8)->first()->avg_sensor ?? '-' }} Kw</span>
+                                                <span style="font-size:35px;font-weight: bold;">{{ $sensors->where('sensor_type_id',8)->first()->avg_sensor }} Kw</span>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -182,7 +182,7 @@
             "height": 200,
             "minValue": 0,
             "maxValue": 600,
-            "value": '{{ $volt->$a ?? '-' }}',
+            "value": '{{ $volt->$a }}',
             "units": 'Volt',
             "title": 'Tegangan',
             "minorTicks": 5,
@@ -238,7 +238,7 @@
             "height": 200,
             "minValue": 0,
             "maxValue": 50,
-            "value": '{{ $current->$a ?? '-' }}',
+            "value": '{{ $current->$a }}',
             "units": 'Ampere',
             "title": 'Arus',
             "minorTicks": .5,
@@ -290,7 +290,7 @@
             "height": 200,
             "minValue": 0,
             "maxValue": 50,
-            "value": '{{ $power->$a ?? '-' }}',
+            "value": '{{ $power->$a }}',
             "units": 'kW',
             "title": 'Daya',
             "minorTicks": .5,

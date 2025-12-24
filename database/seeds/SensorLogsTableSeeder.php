@@ -21,6 +21,9 @@ class SensorLogsTableSeeder extends Seeder
             Sensor_log::create([
                 'sensor_id' => 1,
                 'avg_sensor' => random_int(16, 28),
+                'L1' => null,
+                'L2' => null,
+                'L3' => null,
                 'created_at'  => $date->format('Y-m-d H:i:s')
             ]);
         }
@@ -29,6 +32,9 @@ class SensorLogsTableSeeder extends Seeder
             Sensor_log::create([
                 'sensor_id' => 2,
                 'avg_sensor' => mt_rand(17, 28),
+                'L1' => null,
+                'L2' => null,
+                'L3' => null,
                 'created_at'  => $date->format('Y-m-d H:i:s')
             ]);
         }

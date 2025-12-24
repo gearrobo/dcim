@@ -22,7 +22,7 @@ class CreateSensorsTable extends Migration
             $table->foreign('sensor_type_id')->references('type_id')->on('sensor_types');
             $table->unsignedBigInteger('device_id')->nullable();
             $table->foreign('device_id')->references('id')->on('devices');
-            $table->string('detail_sensor')->nullable();
+            $table->tinyInteger('status')->nullable();
             $table->integer('floor_id')->nullable();
             $table->integer('min_sensor');
             $table->integer('max_sensor');
@@ -33,29 +33,12 @@ class CreateSensorsTable extends Migration
             $table->integer('min_merah');
             $table->integer('max_merah');
             $table->string('avg_sensor')->default('20');
-<<<<<<< HEAD
-            $table->string('location_monitoring')->nullable();
-            $table->enum('protocol_type', ['tcp', 'rtu', 'snmp', 'http', 'enc'])->nullable();
-            $table->string('ip_address')->nullable();
-            $table->integer('port')->nullable();
-            $table->enum('versi_snmp',['v1','v2c'])->nullable();
-            $table->string('community')->nullable();
-            $table->string('snmp_ip_address')->nullable();
-            $table->string('oid_name')->nullable();
-            $table->integer('slave_id')->nullable();
-            $table->integer('address')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->enum('data_type',['3','4'])->nullable();
-            $table->tinyInteger('is_active')->nullable();
-            $table->timestamp('last_seen')->nullable();
-            $table->enum('status_sensor',['online','offline','inactive'])->nullable();
-=======
             $table->string('L1')->nullable();
             $table->string('L2')->nullable();
             $table->string('L3')->nullable();
-            $table->string('address')->nullable();
-            $table->string('register')->nullable();
->>>>>>> parent of 25c037f (ok)
+            $table->integer('id_modbus')->nullable();
+            $table->string('address_modbus')->nullable();
+            $table->string('register_modbus')->nullable();
             $table->timestamps();
         });
     }
